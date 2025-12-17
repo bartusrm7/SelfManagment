@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block title %}Self-Management - Dashboard
+{%
+endblock %}
+
+{% block loggedAs %}
+	<div class="card p-3 mb-4">
+		{% if app.user %}
+			<h4>
+				Hello! You are logged in as
+				<span class="fw-bold">{{
+                                app.user.userIdentifier | capitalize
+                            }}</span>
+			</h4>
+		{% endif %}
+	</div>
+{% endblock %}
+{% block breadcrumbActive %}Dashboard
+{% endblock %}
+{% block body %}{% endblock %}

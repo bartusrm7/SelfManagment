@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block title %}Self-Management - Create task form
+{% endblock %}
+{% block body %}
+	<h2>Create task form</h2>
+	{{ form_start(form) }}
+	{{ form_row(form.taskName) }}
+	{{ form_row(form.taskDescription) }}
+	{{ form_row(form.saveTask) }}
+	{{ form_end(form) }}
+{% endblock %}

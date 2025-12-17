@@ -1,0 +1,13 @@
+{% extends 'login_forms.html.twig' %}
+{% block title %}Self-Management - Edit task form{% endblock %}
+{% block body %}
+	<div class="d-flex justify-content-center align-items-center min-vh-100">
+		<div class="p-5 bg-dark text-light rounded-3">
+			<h2>Edit task form</h2>
+			{{ form_start(form) }}
+			{{ form_row(form.taskName) }}
+			{{ form_row(form.taskDescription) }}
+			{{ form_row(form.saveTask) }}
+			{{ form_end(form) }}</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Self-Management - Base {% endblock %}</title>
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>"
+        />
+        {% block stylesheets %}{% endblock %}{% block javascripts %}{% endblock
+        %}
+        {{
+            encore_entry_link_tags("app")
+        }}
+        {{
+            encore_entry_script_tags("app")
+        }}
+    </head>
+    <body>
+        <div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
+            <div class="sidebar-header border-bottom">
+                <h3 class="sidebar-brand">Self-Management</h3>
+                <button
+                    class="btn-close d-lg-none"
+                    type="button"
+                    data-coreui-theme="dark"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <ul
+                class="sidebar-nav"
+                data-coreui="navigation"
+                data-simplebar="init"
+            >
+                <div class="simplebar-wrapper" style="margin: -8px">
+                    <div class="simplebar-height-auto-observer-wrapper">
+                        <div class="simplebar-height-auto-observer"></div>
+                    </div>
+                    <div class="simplebar-mask">
+                        <div
+                            class="simplebar-offset"
+                            style="right: 0px; bottom: 0px"
+                        >
+                            <div
+                                class="simplebar-content-wrapper"
+                                tabindex="0"
+                                role="region"
+                                aria-label="scrollable content"
+                                style="height: 100%; overflow: hidden"
+                            >
+                                <div
+                                    class="simplebar-content"
+                                    style="padding: 8px"
+                                >
+                                    <li class="nav-item">
+                                        <a
+                                            class="nav-link active"
+                                            href="{{ path('app_dashboard') }}"
+                                        >
+                                            <div class="nav-icon">
+                                                <i
+                                                    class="bi bi-speedometer2"
+                                                ></i>
+                                            </div>
+                                            Dashboard
+                                        </a>
+                                    </li>
+                                    <li class="nav-title">Personal</li>
+                                    <li class="nav-item">
+                                        <a
+                                            class="nav-link"
+                                            href="{{ path('app_daily_tasks') }}"
+                                        >
+                                            <div class="nav-icon">
+                                                <i class="bi bi-list-check"></i>
+                                            </div>
+                                            Daily tasks</a
+                                        >
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="colors.html">
+                                            <div class="nav-icon">
+                                                <i
+                                                    class="bi bi-heart-pulse"
+                                                ></i>
+                                            </div>
+                                            Habits</a
+                                        >
+                                    </li>
+                                    <li class="nav-item">
+                                        <a
+                                            class="nav-link"
+                                            href="typography.html"
+                                        >
+                                            <div class="nav-icon">
+                                                <i
+                                                    class="bi bi-calendar-check"
+                                                ></i>
+                                            </div>
+                                            Meetings</a
+                                        >
+                                    </li>
+                                    <li class="nav-item">
+                                        <a
+                                            class="nav-link"
+                                            href="typography.html"
+                                        >
+                                            <div class="nav-icon">
+                                                <i
+                                                    class="bi bi-journal-check"
+                                                ></i>
+                                            </div>
+                                            Personal Notes</a
+                                        >
+                                    </li>
+                                    <li class="nav-item">
+                                        <a
+                                            class="nav-link"
+                                            href="typography.html"
+                                        >
+                                            <div class="nav-icon">
+                                                <i class="bi bi-lightbulb"></i>
+                                            </div>
+                                            Inspirations</a
+                                        >
+                                    </li>
+                                    <li class="nav-title">Finances</li>
+                                    <li class="nav-group">
+                                        <a
+                                            class="nav-link nav-group-toggle"
+                                            href="#"
+                                        >
+                                            <div class="nav-icon">
+                                                <i class="bi bi-cash-stack"></i>
+                                            </div>
+                                            Expenses</a
+                                        >
+                                        <ul class="nav-group-items compact">
+                                            <li class="nav-item">
+                                                <a
+                                                    class="nav-link"
+                                                    href="buttons/buttons.html"
+                                                >
+                                                    <div class="nav-icon">
+                                                        <i
+                                                            class="bi bi-wallet2"
+                                                        ></i>
+                                                    </div>
+                                                    Daily expenses</a
+                                                >
+                                            </li>
+                                            <li class="nav-item">
+                                                <a
+                                                    class="nav-link"
+                                                    href="buttons/button-group.html"
+                                                >
+                                                    <div class="nav-icon">
+                                                        <i
+                                                            class="bi bi-bar-chart-line"
+                                                        ></i>
+                                                    </div>
+                                                    Statistics</a
+                                                >
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+            <div
+                class="sidebar-footer border-top d-none d-md-flex justify-content-end"
+            >
+                <button
+                    class="sidebar-toggler"
+                    type="button"
+                    data-coreui-toggle="unfoldable"
+                ></button>
+            </div>
+        </div>
+        <div
+            class="main-dashboard-wrapper bg-light d-flex flex-column min-vh-100"
+        >
+            <header class="header header-sticky p-0 mb-4 shadow-sm">
+                <div
+                    class="container-fluid border-bottom d-lg-flex justify-content-lg-end px-3 py-2"
+                >
+                    <button class="header-toggler d-lg-none" type="button">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <ul class="header-nav">
+                        <li class="nav-item py-1">
+                            <div
+                                class="vr h-100 mx-2 text-body text-opacity-75"
+                            ></div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <button
+                                class="btn btn-link nav-link py-2 px-2 d-flex align-items-center"
+                                type="button"
+                                aria-expanded="false"
+                                data-coreui-toggle="dropdown"
+                            >
+                                <i class="bi theme-icon-active"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <button
+                                        class="dropdown-item theme-model-item d-flex align-items-center active"
+                                        type="button"
+                                        data-coreui-theme-value="light"
+                                    >
+                                        <i class="bi bi-sun me-3"></i>Light
+                                    </button>
+                                </li>
+                                <li>
+                                    <button
+                                        class="dropdown-item theme-model-item d-flex align-items-center"
+                                        type="button"
+                                        data-coreui-theme-value="dark"
+                                    >
+                                        <i class="bi bi-moon me-3"></i>Dark
+                                    </button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item py-1">
+                            <div
+                                class="vr h-100 mx-2 text-body text-opacity-75"
+                            ></div>
+                        </li>
+                        <li class="nav-item dropdown d-flex align-items-center">
+                            <a
+                                class="nav-link py-0 pe-0"
+                                data-coreui-toggle="dropdown"
+                                href="#"
+                                role="button"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                            >
+                                <i class="bi bi-person-circle"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end pt-0">
+                                <div
+                                    class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top mb-2"
+                                >
+                                    Account
+                                </div>
+                                <a class="dropdown-item" href="#">Messages</a>
+                                <a class="dropdown-item" href="#"
+                                    >Notifications</a
+                                >
+
+                                <div
+                                    class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold my-2"
+                                >
+                                    <div class="fw-semibold">Settings</div>
+                                </div>
+                                <a class="dropdown-item" href="#">Profile</a>
+                                <a class="dropdown-item" href="#">Settings</a>
+
+                                <div class="dropdown-divider"></div>
+                                <a
+                                    class="dropdown-item"
+                                    href="{{ logout_path() }}"
+                                    >Logout</a
+                                >
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb my-0 ms-3 p-2">
+                        <li class="breadcrumb-item">
+                            <a class="link-breadcrumb-item" href="{{ path('app_dashboard') }}">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <span class="fw-bold">
+                                {% block breadcrumbActive %}{% endblock %}
+                            </span>
+                        </li>
+                    </ol>
+                </nav>
+            </header>
+            <div class="body flex-grow-1">
+                <div class="container-lg px-4">
+                    {% block loggedAs %}{% endblock %}{% block body %}{%
+                    endblock %}
+                </div>
+            </div>
+            <footer class="footer px-4">
+                <span class="text-center w-100"
+                    >&copy;
+                    {{ "now"|date("Y") }}
+                    Bartosz Bogucki</span
+                >
+            </footer>
+        </div>
+    </body>
+    <script>
+        function setThemeMode() {
+            const mainDashboardWrapper = document.querySelector(
+                ".main-dashboard-wrapper"
+            );
+            const themeModeItem =
+                document.querySelectorAll(".theme-model-item");
+            const currentThemeIcon =
+                document.querySelector(".theme-icon-active");
+
+            currentThemeIcon.classList.add("bi-sun");
+
+            themeModeItem.forEach((themeItem) => {
+                themeItem.addEventListener("click", () => {
+                    const themeChosen = themeItem.dataset.coreuiThemeValue;
+
+                    themeModeItem.forEach((theme) =>
+                        theme.classList.remove("active")
+                    );
+                    currentThemeIcon.classList.remove("bi-sun");
+
+                    themeItem.classList.add("active");
+
+                    if (themeChosen === "light") {
+                        currentThemeIcon.classList.remove("bi-moon");
+                        currentThemeIcon.classList.add("bi-sun");
+                        mainDashboardWrapper.classList.add("bg-light");
+                        document.documentElement.removeAttribute(
+                            "data-coreui-theme",
+                            themeChosen
+                        );
+                    } else {
+                        currentThemeIcon.classList.add("bi-moon");
+                        currentThemeIcon.classList.remove("bi-sun");
+                        mainDashboardWrapper.classList.remove("bg-light");
+                        document.documentElement.setAttribute(
+                            "data-coreui-theme",
+                            themeChosen
+                        );
+                    }
+					sessionStorage.setItem("themeMode", themeChosen);
+                });
+            });
+        }
+		
+        document.addEventListener("DOMContentLoaded", () => {
+			setThemeMode();
+            sessionStorage.getItem("themeMode");
+        });
+    </script>
+</html>

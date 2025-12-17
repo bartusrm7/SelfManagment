@@ -1,0 +1,30 @@
+{% extends 'login_forms.html.twig' %}
+
+{% block title %}Self-Management - Registration
+{% endblock %}
+
+{% block body %}
+	<div class="min-vh-100 bg-dark d-flex justify-content-center align-items-center">
+		<div class="container">
+			<div class="bg-light col-md-8 col-lg-6 m-auto p-5 rounded-3" style="max-width: 600px;">
+				<h1 class="h3 mb-4 font-weight-normal">Please sign up</h1>
+				{{ form_errors(registrationForm) }}
+
+				{{ form_start(registrationForm) }}
+				{{ form_row(registrationForm.name) }}
+				{{ form_row(registrationForm.email) }}
+				{{ form_row(registrationForm.plainPassword, {label: 'Password' }) }}
+				{{ form_widget(registrationForm.agreeTerms) }}
+				{{ form_label(registrationForm.agreeTerms) }}
+
+				<button class="btn btn-lg btn-primary w-100 mt-3" type="submit">Register</button>
+				{{ form_end(registrationForm) }}
+
+				<div class="mt-5">
+					<div class="text-center mb-1">Already have an account?</div>
+					<a href="{{ path('app_login') }}" class="btn btn-lg btn-primary w-100">Sign In</a>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
