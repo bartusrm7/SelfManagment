@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block title %}Self-Management - Create note form
+{% endblock %}
+{% block body %}
+	<h2>Create note form</h2>
+	{{ form_start(form) }}
+	{{ form_row(form.noteName) }}
+	{{ form_row(form.noteDescription) }}
+	{{ form_row(form.saveNote) }}
+	{{ form_end(form) }}
+{% endblock %}

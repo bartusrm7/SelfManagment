@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\DailyTasks;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -9,8 +11,20 @@ use Symfony\Component\Routing\Attribute\Route;
 final class DashboardController extends AbstractController
 {
     #[Route('/dashboard', name: 'app_dashboard')]
-    public function index(): Response
+    public function index(EntityManagerInterface $entityManager): Response
     {
-        return $this->render('dashboard/dashboard.html.twig');
+        $taskDate = new \DateTime('today');
+        $tasks = $entityManager->getRepository(DailyTasks::class)->findBy(['taskDate' => $taskDate]);
+
+        $percentageDone = null;
+        $tasksDone = array_filter($tasks, fn($task) => $task->getTaskDone());
+        if ($tasks) {
+            $percentageDone = (count($tasksDone) / count($tasks) * 100);
+        }
+
+        return $this->render('dashboard/dashboard.html.twig', [
+            'tasks' => $tasks,
+            'percentage' => $percentageDone
+        ]);
     }
 }

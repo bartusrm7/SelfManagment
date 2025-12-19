@@ -1,20 +1,294 @@
-{% extends 'base.html.twig' %}
-{% block title %}Self-Management - Dashboard
-{%
-endblock %}
+{% extends 'base.html.twig' %} {% block title %}Self-Management - Dashboard {%
+endblock %} {% block loggedAs %}
+<div class="card p-3 mb-4">
+    {% if app.user %}
+    <h4>
+        Hello! You are logged in as
+        <span class="fw-bold">{{ app.user.userIdentifier | capitalize }}</span>
+    </h4>
+    {% endif %}
+</div>
+{% endblock %} {% block breadcrumbActive %}Dashboard {% endblock %} {% block
+body %}
+<div class="row g-4 mb-4">
+    <div class="col-md-6">
+        <div class="card text-white bg-info">
+            <div
+                class="card-body pb-0 d-flex justify-content-between align-items-start"
+            >
+                <div>
+                    <div class="fs-4 fw-semibold">26K</div>
+                    <div>Daily tasks</div>
+                </div>
+                <div class="dropdown">
+                    <button
+                        class="btn btn-transparent text-white p-0"
+                        type="button"
+                        data-coreui-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                    ></button>
+                </div>
+            </div>
+            <div class="c-chart-wrapper mt-3 mx-3" style="height: 70px">
+                <canvas
+                    class="chart"
+                    id="card-chart2"
+                    height="70"
+                    style="
+                        display: block;
+                        box-sizing: border-box;
+                        height: 70px;
+                        width: 170px;
+                    "
+                    width="170"
+                ></canvas>
+                <div
+                    class="chartjs-tooltip"
+                    style="opacity: 0; left: 154.333px; top: 129.847px"
+                >
+                    <table style="margin: 0px">
+                        <thead class="chartjs-tooltip-header">
+                            <tr
+                                class="chartjs-tooltip-header-item"
+                                style="border-width: 0px"
+                            >
+                                <th style="border-width: 0px">June</th>
+                            </tr>
+                        </thead>
+                        <tbody class="chartjs-tooltip-body">
+                            <tr class="chartjs-tooltip-body-item">
+                                <td style="border-width: 0px">
+                                    <span
+                                        style="
+                                            background: rgb(94, 92, 208);
+                                            border-color: rgba(
+                                                255,
+                                                255,
+                                                255,
+                                                0.55
+                                            );
+                                            border-width: 2px;
+                                            margin-right: 10px;
+                                            height: 10px;
+                                            width: 10px;
+                                            display: inline-block;
+                                        "
+                                    ></span
+                                    >My First dataset: 55
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card text-white bg-primary">
+            <div
+                class="card-body pb-0 d-flex justify-content-between align-items-start"
+            >
+                <div>
+                    <div class="fs-4 fw-semibold">26K</div>
+                    <div>Habits</div>
+                </div>
+                <div class="dropdown">
+                    <button
+                        class="btn btn-transparent text-white p-0"
+                        type="button"
+                        data-coreui-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                    ></button>
+                </div>
+            </div>
+            <div class="c-chart-wrapper mt-3 mx-3" style="height: 70px">
+                <canvas
+                    class="chart"
+                    id="card-chart2"
+                    height="70"
+                    style="
+                        display: block;
+                        box-sizing: border-box;
+                        height: 70px;
+                        width: 170px;
+                    "
+                    width="170"
+                ></canvas>
+                <div
+                    class="chartjs-tooltip"
+                    style="opacity: 0; left: 154.333px; top: 129.847px"
+                >
+                    <table style="margin: 0px">
+                        <thead class="chartjs-tooltip-header">
+                            <tr
+                                class="chartjs-tooltip-header-item"
+                                style="border-width: 0px"
+                            >
+                                <th style="border-width: 0px">June</th>
+                            </tr>
+                        </thead>
+                        <tbody class="chartjs-tooltip-body">
+                            <tr class="chartjs-tooltip-body-item">
+                                <td style="border-width: 0px">
+                                    <span
+                                        style="
+                                            background: rgb(94, 92, 208);
+                                            border-color: rgba(
+                                                255,
+                                                255,
+                                                255,
+                                                0.55
+                                            );
+                                            border-width: 2px;
+                                            margin-right: 10px;
+                                            height: 10px;
+                                            width: 10px;
+                                            display: inline-block;
+                                        "
+                                    ></span
+                                    >My First dataset: 55
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="fw-bold">Today's tasks</h5>
+                    {% if percentage == 100 %}
+                    <h5 class="fw-bold">All tasks done</h5>
+                    {% endif %}
+                </div>
+                <div class="progress">
+                    <div
+                        id="progressBarTasks"
+                        class="progress-bar"
+                        role="progressbar"
+                        style="width: {{ percentage }}%"
+                        aria-valuenow="25"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                    ></div>
+                </div>
+                <div>
+                    {% if tasks|length > 0 %} {% for task in tasks %}
+                    <div>
+                        <div class="m-2">
+                            {{ loop.index }}
+                            -
+                            {{ task.taskName }}
+                        </div>
+                    </div>
+                    {% endfor %} {% else %}
+                    <div>No tasks data availble</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card text-white bg-warning h-100">
+            <div
+                class="card-body pb-0 d-flex justify-content-between align-items-start"
+            >
+                <div>
+                    <div class="fs-4 fw-semibold">26K</div>
+                    <div>Habits</div>
+                </div>
+                <div class="dropdown">
+                    <button
+                        class="btn btn-transparent text-white p-0"
+                        type="button"
+                        data-coreui-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                    ></button>
+                </div>
+            </div>
+            <div class="c-chart-wrapper mt-3 mx-3" style="height: 70px">
+                <canvas
+                    class="chart"
+                    id="card-chart3"
+                    height="70"
+                    style="
+                        display: block;
+                        box-sizing: border-box;
+                        height: 70px;
+                        width: 170px;
+                    "
+                    width="170"
+                ></canvas>
+                <div
+                    class="chartjs-tooltip"
+                    style="opacity: 0; left: 154.333px; top: 129.847px"
+                >
+                    <table style="margin: 0px">
+                        <thead class="chartjs-tooltip-header">
+                            <tr
+                                class="chartjs-tooltip-header-item"
+                                style="border-width: 0px"
+                            >
+                                <th style="border-width: 0px">June</th>
+                            </tr>
+                        </thead>
+                        <tbody class="chartjs-tooltip-body">
+                            <tr class="chartjs-tooltip-body-item">
+                                <td style="border-width: 0px">
+                                    <span
+                                        style="
+                                            background: rgb(94, 92, 208);
+                                            border-color: rgba(
+                                                255,
+                                                255,
+                                                255,
+                                                0.55
+                                            );
+                                            border-width: 2px;
+                                            margin-right: 10px;
+                                            height: 10px;
+                                            width: 10px;
+                                            display: inline-block;
+                                        "
+                                    ></span
+                                    >My First dataset: 55
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-{% block loggedAs %}
-	<div class="card p-3 mb-4">
-		{% if app.user %}
-			<h4>
-				Hello! You are logged in as
-				<span class="fw-bold">{{
-                                app.user.userIdentifier | capitalize
-                            }}</span>
-			</h4>
-		{% endif %}
-	</div>
+<script>
+    function habitsChart() {
+        new Chart(document.getElementById('card-chart3"'), {
+            type: "bar",
+            data: {
+                labels: data.map((row) => row.year),
+                datasets: [
+                    {
+                        label: "Acquisitions by year",
+                        data: data.map((row) => row.count),
+                    },
+                ],
+            },
+        });
+        const config = {
+            type: "line",
+            data: data,
+        };
+    }
+    habitsChart();
+</script>
 {% endblock %}
-{% block breadcrumbActive %}Dashboard
-{% endblock %}
-{% block body %}{% endblock %}

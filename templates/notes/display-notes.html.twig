@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %} {% block title %}Self-Management - Notes {%
+endblock %} {% block breadcrumbActive %}Notes {% endblock %} {% block body %}
+<div class="card">
+    <div class="card-body">
+        <div>
+            <a
+                href="{{ path('app_create_note') }}"
+                class="btn btn-dark border-light float-end fw-bold"
+                >Create new notes</a
+            >
+        </div>
+
+        <div class="accordion mt-5" id="accordionExample">
+            {% for note in notes %}
+            <div class="accordion-item-container d-flex mb-1">
+                <div class="accordion-item me-1 w-100">
+                    <h2 class="accordion-header">
+                        <button
+                            class="accordion-button fw-bold"
+                            type="button"
+                            data-coreui-toggle="collapse"
+                            data-coreui-target="#collapse{{ note.id }}"
+                            aria-expanded="true"
+                            aria-controls="collapse{{ note.id }}"
+                        >
+                            {{ note.noteName }}
+                        </button>
+                    </h2>
+                    <div
+                        id="collapse{{ note.id }}"
+                        class="accordion-collapse collapse"
+                        data-coreui-parent="#accordionExample"
+                    >
+                        <div class="accordion-body">
+                            {{ note.noteDescription }}
+                        </div>
+                    </div>
+                </div>
+                <button
+                    class="btn btn-secondary btn-remove-note"
+                    data-note-id="{{ note.id }}"
+                >
+                    Delete
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll(".btn-remove-note").forEach((removeBtn) => {
+        const id = removeBtn.dataset.noteId;
+        removeBtn.addEventListener("click", async () => {
+            const response = await fetch(`/notes/remove-note/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                },
+            });
+            if (response.ok) {
+                removeBtn.closest(".accordion-item-container").remove();
+            }
+        });
+    });
+</script>
+{% endblock %}

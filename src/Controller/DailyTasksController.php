@@ -24,14 +24,14 @@ final class DailyTasksController extends AbstractController
         $filter = $this->createForm(DailyTasksFilterType::class, $taskDate);
         $filter->handleRequest($request);
 
-        $tasks = $entityManager->getRepository(DailyTasks::class)->findBy(['taskDate' => $taskDate->getTaskDate()]);
+        $tasks = $entityManager->getRepository(DailyTasks::class)->findBy(['taskDate' => new \DateTime('today')]);
 
         if ($filter->isSubmitted() && $filter->isValid()) {
             $selectedDate = $filter->getData()->getTaskDate();
             $tasks = $entityManager->getRepository(DailyTasks::class)->findBy(['taskDate' => $selectedDate]);
         }
 
-        return $this->render('daily_tasks/daily_tasks.html.twig', [
+        return $this->render('daily_tasks/display-tasks.html.twig', [
             'filter' => $filter->createView(),
             'tasks' => $tasks
         ]);
@@ -97,6 +97,8 @@ final class DailyTasksController extends AbstractController
         if ($task) {
             $entityManager->remove($task);
             $entityManager->flush();
+
+            return new JsonResponse(['status' => 'removed'], 200);
         }
     }
 }
