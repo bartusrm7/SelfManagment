@@ -6,6 +6,64 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
+import { Calendar } from "@fullcalendar/core";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+
+document.addEventListener("DOMContentLoaded", async function () {
+    const calendarEl = document.getElementById("calendar");
+    if (!calendarEl) return;
+
+    const response = await fetch("/meetings/json");
+    const data = await response.json();
+    console.log(data);
+    const calendar = new Calendar(calendarEl, {
+        plugins: [dayGridPlugin, interactionPlugin],
+        initialView: "dayGridMonth",
+        selectable: true,
+        editable: true,
+        droppable: true,
+        events: data.data,
+        select: function () {
+            document.getElementById("meetingModal").style.display = "flex";
+        },
+    });
+    calendar.render();
+
+    document
+        .getElementById("saveMeeting")
+        .addEventListener("click", async () => {
+            const meetingName = document.getElementById("meetingName").value;
+            const meetingDescription =
+                document.getElementById("meetingDescription").value;
+            const meetingStartDate =
+                document.getElementById("meetingStartDate").value;
+            const meetingEndDate =
+                document.getElementById("meetingEndDate").value;
+
+            const response = await fetch("/meetings", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    title: meetingName,
+                    description: meetingDescription,
+                    start: meetingStartDate,
+                    end: meetingEndDate,
+                }),
+            });
+            const data = await response.json();
+            calendar.addEvent(data);
+
+            document.getElementById("meetingModal").style.display = "none";
+            document.getElementById("meetingName").value = "";
+            document.getElementById("meetingDescription").value = "";
+            document.getElementById("meetingStartDate").value = "";
+            document.getElementById("meetingEndDate").value = "";
+        });
+});
+
 import "./styles/app.scss";
 import "bootstrap-icons/font/bootstrap-icons.css";
 

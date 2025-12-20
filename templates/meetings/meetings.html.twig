@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %} {% block title %}Self-Management - Meetings {%
+endblock %} {% block breadcrumbActive %}Meetings {% endblock %} {% block body %}
+
+<div class="card">
+    <div class="card-body">
+        <div id="calendar"></div>
+    </div>
+</div>
+<style>
+    #meetingModal {
+        width: 100vw;
+        height: 100vh;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    #closeMeetingsModal {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .modal-content {
+        position: relative;
+        max-width: 600px;
+    }
+</style>
+<div id="meetingModal" class="modal">
+    <div class="modal-content container p-3">
+        <button class="btn btn-dark border-light m-2" id="closeMeetingsModal">&times;</button>
+        <h3 class="ms-1">New meeting</h3>
+        {{ form_start(form) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.startDate) }}
+        {{ form_row(form.endDate) }}
+        <button class="btn btn-dark border-light mb-2 fw-bold w-100" id="saveMeeting">Save</button>
+        {{ form_end(form) }}
+    </div>
+        
+</div>
+
+<script>
+    document
+        .getElementById("closeMeetingsModal")
+        .addEventListener("click", () => {
+            document.getElementById("meetingModal").style.display = "none";
+            document.getElementById("meetingName").value = "";
+            document.getElementById("meetingDescription").value = "";
+            document.getElementById("meetingStartDate").value = "";
+            document.getElementById("meetingEndDate").value = "";
+        });
+</script>
+
+{% endblock %}

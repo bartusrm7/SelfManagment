@@ -21,6 +21,9 @@
     },
     "dependencies": {
         "@coreui/coreui": "^5.4.3",
+        "@fullcalendar/core": "^6.1.19",
+        "@fullcalendar/daygrid": "^6.1.19",
+        "@fullcalendar/interaction": "^6.1.19",
         "bootstrap": "^5.3.8",
         "bootstrap-icons": "^1.13.1",
         "chart.js": "^4.5.1"
