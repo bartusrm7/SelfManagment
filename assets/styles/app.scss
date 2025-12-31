@@ -18,3 +18,20 @@
     opacity: 0.5;
     font-weight: bold;
 }
+#meetingModal {
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+#closeMeetingsModal {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.modal-content {
+    position: relative;
+    max-width: 600px;
+}

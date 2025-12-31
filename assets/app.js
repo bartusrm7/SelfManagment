@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const response = await fetch("/meetings/json");
     const data = await response.json();
-    console.log(data);
+
     const calendar = new Calendar(calendarEl, {
         plugins: [dayGridPlugin, interactionPlugin],
         initialView: "dayGridMonth",
