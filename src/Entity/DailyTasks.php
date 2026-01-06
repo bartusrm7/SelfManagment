@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\DailyTasksRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 #[ORM\Entity(repositoryClass: DailyTasksRepository::class)]
 class DailyTasks
@@ -25,6 +26,10 @@ class DailyTasks
 
     #[ORM\Column(type: 'datetime', options: ['default' => 'CURRENT_TIMESTAMP'], nullable: true)]
     private ?DateTime $taskDate = null;
+
+    #[ORM\ManyToOne(User::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
 
     public function getId(): ?int
@@ -76,7 +81,19 @@ class DailyTasks
     public function setTaskDate(?DateTime $taskDate): static
     {
         $this->taskDate = $taskDate;
-        
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
         return $this;
     }
 }

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\MeetingsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 #[ORM\Entity(repositoryClass: MeetingsRepository::class)]
 class Meetings
@@ -27,6 +28,11 @@ class Meetings
 
     #[ORM\Column]
     private ?\DateTime $endDate = null;
+
+    #[ORM\ManyToOne(User::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
 
     public function getId(): ?int
     {
@@ -89,6 +95,17 @@ class Meetings
     public function setEndDate(\DateTime $endDate): static
     {
         $this->endDate = $endDate;
+
+        return $this;
+    }
+    public function getUser(): ?int
+    {
+        return $this->user;
+    }
+
+    public function setUser(?int $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

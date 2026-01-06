@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\NotesRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 #[ORM\Entity(repositoryClass: NotesRepository::class)]
 class Notes
@@ -19,6 +20,10 @@ class Notes
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $noteDescription = null;
+
+    #[ORM\ManyToOne(User::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -45,6 +50,17 @@ class Notes
     public function setNoteDescription(string $noteDescription): static
     {
         $this->noteDescription = $noteDescription;
+
+        return $this;
+    }
+    public function getUser(): ?int
+    {
+        return $this->user;
+    }
+
+    public function setUser(?int $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

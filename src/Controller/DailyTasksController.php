@@ -8,6 +8,7 @@ use App\Form\DailyTasksType;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,19 +17,21 @@ use Symfony\Component\Routing\Attribute\Route;
 final class DailyTasksController extends AbstractController
 {
     #[Route('/daily-tasks', name: 'app_daily_tasks')]
-    public function displayTasks(Request $request, EntityManagerInterface $entityManager): Response
+    public function displayTasks(Security $security, Request $request, EntityManagerInterface $entityManager): Response
     {
+        $user = $security->getUser();
+
         $taskDate = new DailyTasks();
         $taskDate->setTaskDate(new \DateTime());
 
         $filter = $this->createForm(DailyTasksFilterType::class, $taskDate);
         $filter->handleRequest($request);
 
-        $tasks = $entityManager->getRepository(DailyTasks::class)->findBy(['taskDate' => new \DateTime('today')]);
+        $tasks = $entityManager->getRepository(DailyTasks::class)->findBy(['taskDate' => new \DateTime('today'), 'user' => $user]);
 
         if ($filter->isSubmitted() && $filter->isValid()) {
             $selectedDate = $filter->getData()->getTaskDate();
-            $tasks = $entityManager->getRepository(DailyTasks::class)->findBy(['taskDate' => $selectedDate]);
+            $tasks = $entityManager->getRepository(DailyTasks::class)->findBy(['taskDate' => $selectedDate, 'user' => $user]);
         }
 
         return $this->render('daily_tasks/display-tasks.html.twig', [

@@ -26,8 +26,8 @@ endblock %} {% block breadcrumbActive %}Daily tasks {% endblock %} {% block body
             </thead>
             <tbody class="table-group-divider">
                 {% for task in tasks %}
-                <tr>
-                    <th>{{ loop.index }}</th>
+                <tr class="align-middle">
+                    <th class="text-center">{{ loop.index }}</th>
                     <td>{{ task.taskName }}</td>
                     <td>{{ task.taskDescription }}</td>
                     <td class="text-center task-done-td">

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %}Self-Management - Budget
+{% endblock %}
+{% block breadcrumbActive %}Budget form
+{% endblock %}
+{% block body %}
+	<h2>Add new budget</h2>
+	{{ form_start(form) }}
+	{{ form_row(form.budget) }}
+	{{ form_row(form.saveBudget) }}
+	{{ form_end(form) }}
+{% endblock %}
