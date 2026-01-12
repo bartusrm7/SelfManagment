@@ -21,11 +21,16 @@ document.addEventListener("DOMContentLoaded", async function () {
         plugins: [dayGridPlugin, interactionPlugin],
         initialView: "dayGridMonth",
         selectable: true,
-        editable: true,
-        droppable: true,
         events: data.data,
         select: function () {
             document.getElementById("meetingModal").style.display = "flex";
+        },
+        eventClick: function (info) {
+            document.getElementById("meetingChosenModal").style.display =
+                "flex";
+            document.getElementById("meetingChosenName").value =
+                info.event.title;
+            document.getElementById("meetingChosenId").value = info.event.id;
         },
     });
     calendar.render();
@@ -61,6 +66,19 @@ document.addEventListener("DOMContentLoaded", async function () {
             document.getElementById("meetingDescription").value = "";
             document.getElementById("meetingStartDate").value = "";
             document.getElementById("meetingEndDate").value = "";
+        });
+
+    document
+        .getElementById("removeMeetingBtn")
+        .addEventListener("click", async () => {
+            const id = document.getElementById("meetingChosenId").value;
+
+            await fetch(`/meetings/remove-meeting/${id}`, {
+                method: "POST",
+            });
+            calendar.getEventById(id).remove();
+            document.getElementById("meetingChosenModal").style.display =
+                "none";
         });
 });
 

@@ -17,15 +17,9 @@
 
 			<div class="d-flex flex-wrap justify-content-evenly justify-content-md-start">
 				<div class="card text-white text-bg-success mb-3">
-					<h5 class="card-header text-center">Budget amount</h5>
+					<h5 class="card-header text-center">Current budget amount</h5>
 					<div class="card-body">
-						<h4 class="card-text fw-bold">1000$</h4>
-					</div>
-				</div>
-				<div class="card text-white text-bg-success mb-3">
-					<h5 class="card-header text-center">Vol. percentage plus</h5>
-					<div class="card-body">
-						<h4 class="card-tex fw-boldt">+90%</h4>
+						<h4 class="card-text fw-bold">{{ budget }}$</h4>
 					</div>
 				</div>
 				<div class="card text-white text-bg-danger mb-3">
@@ -43,7 +37,7 @@
 			<div class="d-sm-flex justify-content-between align-items-center mb-3">
 				<h5>Add new expense for current budget</h5>
 				<div>
-					<a class="btn btn-dark border-light fw-bold px-4">Add expense</a>
+					<a href="{{ path('app_daily_expenses_add_expense') }}" class="btn btn-dark border-light fw-bold px-4">Add expense</a>
 				</div>
 			</div>
 			<table class="table table-hover table-bordered">

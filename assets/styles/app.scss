@@ -18,7 +18,8 @@
     opacity: 0.5;
     font-weight: bold;
 }
-#meetingModal {
+#meetingModal,
+#meetingChosenModal {
     width: 100vw;
     height: 100vh;
     display: none;
@@ -26,7 +27,8 @@
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5);
 }
-#closeMeetingsModal {
+#closeMeetingsModal,
+#closeChosenMeetingsModal {
     position: absolute;
     top: 0;
     right: 0;
@@ -34,4 +36,7 @@
 .modal-content {
     position: relative;
     max-width: 600px;
+}
+.modal-chosen-meeting-content {
+    max-width: 400px;
 }

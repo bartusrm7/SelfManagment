@@ -28,6 +28,22 @@ endblock %} {% block breadcrumbActive %}Meetings {% endblock %} {% block body %}
     </div>
 </div>
 
+<div id="meetingChosenModal" class="modal">
+    <div class="modal-content modal-chosen-meeting-content container p-3">
+        <button class="btn btn-dark border-light m-2" id="closeChosenMeetingsModal">
+            &times;
+        </button>
+        <div class="mt-4">
+            <label class="ms-2" for="meetingChosenName">Meetings name</label>
+            <div class="d-flex">
+                <input id="meetingChosenName" type="text" class="form-control me-3" disabled/>        
+                <input id="meetingChosenId" type="hidden"/>        
+                <button id="removeMeetingBtn" class="btn btn-danger text-white fw-bold">Remove meeting</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     document
         .getElementById("closeMeetingsModal")
@@ -37,6 +53,11 @@ endblock %} {% block breadcrumbActive %}Meetings {% endblock %} {% block body %}
             document.getElementById("meetingDescription").value = "";
             document.getElementById("meetingStartDate").value = "";
             document.getElementById("meetingEndDate").value = "";
+        });
+    document
+        .getElementById("closeChosenMeetingsModal")
+        .addEventListener("click", () => {
+            document.getElementById("meetingChosenModal").style.display = "none";
         });
 </script>
 

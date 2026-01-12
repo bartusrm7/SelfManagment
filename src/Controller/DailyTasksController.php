@@ -40,15 +40,18 @@ final class DailyTasksController extends AbstractController
         ]);
     }
 
-    #[Route('/daily-tasks/create-task', 'app_create_daily_tasks')]
-    public function createTask(Request $request, EntityManagerInterface $entityManager): Response
-    {
+    #[Route('/daily-tasks/create-task/{date}', 'app_create_daily_tasks')]
+    public function createTask(Security $security, Request $request, EntityManagerInterface $entityManager, string $date): Response
+    {   
+        $user = $security->getUser();
+
         $task = new DailyTasks();
         $form = $this->createForm(DailyTasksType::class, $task);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $task->setTaskDate(new \DateTime());
+            $task->setTaskDate(new \DateTime($date));
+            $task->setUser($user);
             $entityManager->persist($task);
             $entityManager->flush();
 

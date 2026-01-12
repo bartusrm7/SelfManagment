@@ -30,14 +30,14 @@ class MeetingsType extends AbstractType
                 'label' => 'Start date',
                 'label_attr' => ['class' => 'ms-1'],
                 'attr' => ['class' => 'mb-2 form-control', 'id' => 'meetingStartDate'],
-                'data' => new \DateTime('now', new \DateTimeZone('Europe/Warsaw')),
+                'data' => new \DateTime(),
                 'minutes' => [0, 30]
             ])
             ->add('endDate', DateTimeType::class, [
                 'label' => 'End date',
                 'label_attr' => ['class' => 'ms-1'],
                 'attr' => ['class' => 'mb-3 form-control', 'id' => 'meetingEndDate'],
-                'data' => new \DateTime('now', new \DateTimeZone('Europe/Warsaw')),
+                'data' => new \DateTime(),
                 'minutes' => [0, 30]
             ]);
     }

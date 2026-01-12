@@ -8,7 +8,7 @@ endblock %} {% block breadcrumbActive %}Daily tasks {% endblock %} {% block body
             {{ form_row(filter.taskDate) }}
             {{ form_end(filter) }}
             <a
-                href="{{ path('app_create_daily_tasks') }}"
+                href="{{ path('app_create_daily_tasks', {'date': filter.taskDate.vars.value}) }}"
                 class="btn btn-dark border-light float-end fw-bold"
                 >Create new daily task</a
             >

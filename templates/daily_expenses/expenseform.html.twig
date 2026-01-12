@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %}Self-Management - Expenses
+{% endblock %}
+{% block breadcrumbActive %}Expense form
+{% endblock %}
+{% block body %}
+	<h2>Add new expense</h2>
+	{{ form_start(form) }}
+	{{ form_row(form.name) }}
+	{{ form_row(form.amount) }}
+	{{ form_row(form.date) }}
+	{{ form_row(form.saveExpense) }}
+	{{ form_end(form) }}
+{% endblock %}
