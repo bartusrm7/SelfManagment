@@ -17,15 +17,27 @@
 
 			<div class="d-flex flex-wrap justify-content-evenly justify-content-md-start">
 				<div class="card text-white text-bg-success mb-3">
-					<h5 class="card-header text-center">Current budget amount</h5>
+					<h5 class="card-header text-center">Budget sum</h5>
 					<div class="card-body">
 						<h4 class="card-text fw-bold">{{ budget }}$</h4>
+					</div>
+				</div>
+				<div class="card text-white text-bg-warning mb-3">
+					<h5 class="card-header text-center">Current budget</h5>
+					<div class="card-body">
+						<h4 class="card-text fw-bold">{{ restAmount }}$</h4>
 					</div>
 				</div>
 				<div class="card text-white text-bg-danger mb-3">
 					<h5 class="card-header text-center">Expenses amount</h5>
 					<div class="card-body">
-						<h4 class="card-text fw-bold">-100$</h4>
+						<h4 class="card-text fw-bold">
+							{% if budgetRest > 0 %}-{{ budgetRest }}$
+							{% else %}
+								{{ budgetRest }}$
+							{% endif %}
+
+						</h4>
 					</div>
 				</div>
 			</div>
@@ -46,14 +58,20 @@
 						<th class="col-2">#</th>
 						<th class="col-4">Name</th>
 						<th class="col-2">Amount</th>
+						<th class="col-2">Date</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<th></th>
-						<td></td>
-						<td></td>
-					</tr>
+					{% for expense in expenses %}
+						{% if expense.amount is not empty %}
+							<tr>
+								<th>{{loop.index}}</th>
+								<td>{{expense.name ?? ''}}</td>
+								<td>{{expense.amount ?? ''}}</td>
+								<td>{{expense.date|date('Y-m-d')}}</td>
+							</tr>
+						{% endif %}
+					{% endfor %}
 				</tbody>
 			</table>
 		</div>

@@ -18,11 +18,23 @@ final class DailyExpensesController extends AbstractController
     public function displayDailyExpenses(Security $security, EntityManagerInterface $entityManager): Response
     {
         $user = $security->getUser();
-        $budgetRaw = $entityManager->getRepository(Expenses::class)->findBy(['user' => $user]);
-        $budget = array_sum(array_map(fn($b) => $b->getBudget(), $budgetRaw));
+        $expensesRaw = $entityManager->getRepository(Expenses::class)->findBy(['user' => $user]);
+        $budget = array_sum(array_map(fn($b) => $b->getBudget(), $expensesRaw));
 
+        $expenses = [];
+        foreach ($expensesRaw as  $v) {
+            if ($v->getAmount() !== null) {
+                $expenses[] = $v;
+            }
+        }
+        $budgetRest = array_sum(array_map(fn($e) => $e->getAmount(), $expenses));
+        $restAmount = $budget - $budgetRest;
+        
         return $this->render('daily_expenses/dailyexpenses.html.twig', [
-            'budget' => $budget
+            'budget' => $budget,
+            'expenses' => $expenses,
+            'budgetRest' => $budgetRest,
+            'restAmount' => $restAmount
         ]);
     }
 
@@ -48,15 +60,36 @@ final class DailyExpensesController extends AbstractController
     }
 
     #[Route('/daily-expenses/add-expense', 'app_daily_expenses_add_expense')]
-    public function addExpense(Request $request, EntityManagerInterface $entityManager)
+    public function addExpense(Security $security, Request $request, EntityManagerInterface $entityManager)
     {
+        $user = $security->getUser();
+
         $expense = new Expenses();
         $form = $this->createForm(ExpensesType::class, $expense);
         $form->handleRequest($request);
 
+        $expensesRaw = $entityManager->getRepository(Expenses::class)->findBy(['user' => $user]);
+        $budget = array_sum(array_map(fn($b) => $b->getBudget(), $expensesRaw));
+
+        $expenses = [];
+        foreach ($expensesRaw as  $v) {
+            if ($v->getAmount() !== null) {
+                $expenses[] = $v;
+            }
+        }
+        $spent = array_sum(array_map(fn($e) => $e->getAmount(), $expenses));
+        $newAmount = $expense->getAmount();
+
+        if ($spent + $newAmount > $budget) {
+            $this->addFlash('error', 'This expense would exceed your budget');
+            return $this->redirectToRoute('app_daily_expenses');
+        }
         if ($form->isSubmitted() && $form->isValid()) {
+            $expense->setUser($user);
             $entityManager->persist($expense);
             $entityManager->flush();
+
+            return $this->redirectToRoute('app_daily_expenses');
         }
 
         return $this->render('daily_expenses/expenseform.html.twig', [

@@ -25,6 +25,7 @@ class ExpensesType extends AbstractType
             ])
             ->add('date', DateType::class, [
                 'label' => 'Expense date',
+                'data' => new \DateTime(),
                 'attr' => ['class' => 'form-control']
             ])
             ->add('saveExpense', SubmitType::class, [
