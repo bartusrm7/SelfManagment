@@ -7,11 +7,27 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="d-sm-flex justify-content-between align-items-center mb-3">
-				<h5>Set budget for current month
-					<span class="opacity-50">({{ "now"|date("F") }})</span>
+				<h5>Set budget for a date:
+					<span class="opacity-50">
+						<select class="rounded-3" id="monthSelect">
+							{% for i in 1..12 %}
+								{% set m = '%02d'|format(i) %}
+								<option value="{{ m }}" {{ selectedMonth == m ? 'selected' }}>
+									{{ (selectedYear ~ '-' ~ m)|date('F') }}
+								</option>
+							{% endfor %}
+						</select>
+						<select class="rounded-3" id="yearSelect">
+							{% for y in 2020..2030 %}
+								<option value="{{ y }}" {{ selectedYear == y ? 'selected' }}>
+									{{ y }}
+								</option>
+							{% endfor %}
+						</select>
+					</span>
 				</h5>
 				<div>
-					<a href="{{ path('app_daily_expenses_budget') }}" class="btn btn-dark border-light fw-bold px-4">Set budget</a>
+					<a href="{{ path('app_daily_expenses_budget', { year: selectedYear, month: selectedMonth }) }}" class="btn btn-dark border-light fw-bold px-4">Set budget</a>
 				</div>
 			</div>
 
@@ -36,7 +52,6 @@
 							{% else %}
 								{{ budgetRest }}$
 							{% endif %}
-
 						</h4>
 					</div>
 				</div>
@@ -49,7 +64,7 @@
 			<div class="d-sm-flex justify-content-between align-items-center mb-3">
 				<h5>Add new expense for current budget</h5>
 				<div>
-					<a href="{{ path('app_daily_expenses_add_expense') }}" class="btn btn-dark border-light fw-bold px-4">Add expense</a>
+					<a href="{{ path('app_daily_expenses_add_expense', { year: selectedYear, month: selectedMonth }) }}" class="btn btn-dark border-light fw-bold px-4">Add expense</a>
 				</div>
 			</div>
 			<table class="table table-hover table-bordered">
@@ -76,4 +91,13 @@
 			</table>
 		</div>
 	</div>
+<script>
+	const year = document.getElementById('yearSelect'); 
+	const month = document.getElementById('monthSelect'); 
+	function hrefFunction() { 
+		location.href = `/daily-expenses/${year.value}/${month.value}`; 
+	}
+	year.addEventListener('change', hrefFunction); 
+	month.addEventListener('change', hrefFunction);
+</script>
 {% endblock %}

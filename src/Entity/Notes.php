@@ -53,12 +53,12 @@ class Notes
 
         return $this;
     }
-    public function getUser(): ?int
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(?int $user): static
+    public function setUser(?User $user): static
     {
         $this->user = $user;
 
