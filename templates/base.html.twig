@@ -172,7 +172,7 @@
                     </div>
                 </div>
             </ul>
-            <div
+            {# <div
                 class="sidebar-footer border-top d-none d-md-flex justify-content-end"
             >
                 <button
@@ -180,10 +180,10 @@
                     type="button"
                     data-coreui-toggle="unfoldable"
                 ></button>
-            </div>
+            </div> #}
         </div>
         <div
-            class="main-dashboard-wrapper bg-light d-flex flex-column min-vh-100"
+            class="main-dashboard-wrapper d-flex flex-column min-vh-100"
         >
             <header class="header header-sticky p-0 mb-4 shadow-sm">
                 <div
@@ -210,7 +210,7 @@
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
                                     <button
-                                        class="dropdown-item theme-model-item d-flex align-items-center active"
+                                        class="dropdown-item theme-model-item d-flex align-items-center "
                                         type="button"
                                         data-coreui-theme-value="light"
                                     >
@@ -350,7 +350,23 @@
 		
         document.addEventListener("DOMContentLoaded", () => {
 			setThemeMode();
-            sessionStorage.getItem("themeMode");
+
+            const themeModeItem =
+                document.querySelectorAll(".theme-model-item");
+            const saved = sessionStorage.getItem("themeMode"); 
+            
+            if (saved) {
+                if (saved === "light") {
+                     document.documentElement.removeAttribute("data-coreui-theme"); 
+                } else { 
+                    document.documentElement.setAttribute("data-coreui-theme", saved); 
+                }
+            }
+            themeModeItem.forEach(theme => {
+                if (theme.dataset.coreuiThemeValue === saved) {
+                    theme.classList.add('active');
+                }
+            })
         });
     </script>
 </html>
