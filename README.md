@@ -21,42 +21,39 @@ Fully optimized for desktop and mobile devices.
 ### Sign In/Up
 #### 1. Welcome page
 Intro screen shown before login.
-<img src="assets/images/Zrzut ekranu 2026-01-23 135454.png" width="100%" /> 
+<img src="assets/images/Zrzut ekranu 2026-01-23 135010.png" width="100%" /> 
 
 #### 2. Register
 Sign-up form for new users.
-<img src="/self-managment/assets/images/Zrzut ekranu 2026-01-23 134538.png" width="100%" /> 
+<img src="assets/images/Zrzut ekranu 2026-01-23 134538.png" width="100%" /> 
 
 #### 3. Login
 Secure login interface.
-<img src="/self-managment/assets/images/Zrzut ekranu 2026-01-23 091724.png" width="100%" /> 
+<img src="assets/images/Zrzut ekranu 2026-01-23 134557.png" width="100%" /> 
 
 
 ### Dashboard
 #### 4. Dashboard main page
 Main overview with charts, task list, and expense summary.
-<img src="/self-managment/assets/images/Zrzut ekranu 2026-01-23 091724.png" width="100%" /> 
+<img src="assets/images/Zrzut ekranu 2026-01-23 134912.png" width="100%" /> 
 
 ### Personal
 #### 5. Daily Tasks
 Manage personal tasks with full CRUD functionality.
-<img src="/self-managment/assets/images/Zrzut ekranu 2026-01-23 091724.png" width="100%" /> 
-<img src="/self-managment/assets/images/Zrzut ekranu 2026-01-23 091724.png" width="100%" /> 
-<img src="/self-managment/assets/images/Zrzut ekranu 2026-01-23 091724.png" width="100%" /> 
+<img src="assets/images/Zrzut ekranu 2026-01-23 134710.png" width="100%" /> 
 
 #### 6. Meetings
 View and manage your scheduled meetings, including upcoming and past events.
-<img src="/work-tracker-frontend/src/assets/Zrzut ekranu 2025-04-16 092049.png" width="100%" />
-<img src="/work-tracker-frontend/src/assets/Zrzut ekranu 2025-04-16 092227.png" />
+<img src="assets/images/Zrzut ekranu 2026-01-23 134805.png" width="100%" /> 
 
 #### 7. Notes
 Store and review personal notes. Users can toggle visibility of their latest notes and reminders.
-<img src="/self-managment/assets/images/Zrzut ekranu 2026-01-23 091724.png" width="100%" /> 
+<img src="assets/images/Zrzut ekranu 2026-01-23 134817.png" width="100%" /> 
 
 ### Finances
 #### 8. Expenses
 Track and manage your expenses with monthly summaries, detailed entries, and customizable budget settings.
-<img src="/self-managment/assets/images/Zrzut ekranu 2026-01-23 091724.png" width="100%" /> 
+<img src="assets/images/Zrzut ekranu 2026-01-23 134852.png" width="100%" /> 
 
 
 ## Technologies:
@@ -77,6 +74,24 @@ git clone git@github.com:bartusrm7/SelfManagment.git
 ```
 
 ```bash
-git clone git@github.com:bartusrm7/SelfManagment.git
+cd SelfManagment
 ```
 
+```bash
+composer install
+```
+
+```bash
+npm install
+npm run build
+```
+Then in .env set your own database.
+
+```bash
+php bin/console doctrine:database:create
+php bin/console doctrine:migrations:migrate
+```
+
+```bash
+symfony server:start
+```
