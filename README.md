@@ -21,7 +21,7 @@ Fully optimized for desktop and mobile devices.
 ### Sign In/Up
 #### 1. Welcome page
 Intro screen shown before login.
-<img src="/self-managment/assets/images/Zrzut ekranu 2026-01-23 135454.png" width="100%" /> 
+<img src="/assets/images/Zrzut ekranu 2026-01-23 135454.png" width="100%" /> 
 
 #### 2. Register
 Sign-up form for new users.
