@@ -69,29 +69,37 @@ Track and manage your expenses with monthly summaries, detailed entries, and cus
 To run the project locally follow for these steps:
 
 
+1
 ```bash
 git clone git@github.com:bartusrm7/SelfManagment.git
 ```
 
+2
 ```bash
 cd SelfManagment
 ```
 
+3
 ```bash
 composer install
 ```
 
+4
 ```bash
 npm install
 npm run build
 ```
+
+5
 Then in .env set your own database.
 
+6
 ```bash
 php bin/console doctrine:database:create
 php bin/console doctrine:migrations:migrate
 ```
 
+7
 ```bash
 symfony server:start
 ```
