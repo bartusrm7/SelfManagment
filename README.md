@@ -74,6 +74,24 @@ git clone git@github.com:bartusrm7/SelfManagment.git
 ```
 
 ```bash
-git clone git@github.com:bartusrm7/SelfManagment.git
+cd SelfManagment
 ```
 
+```bash
+composer install
+```
+
+```bash
+npm install
+npm run build
+```
+Then in .env set your own database.
+
+```bash
+php bin/console doctrine:database:create
+php bin/console doctrine:migrations:migrate
+```
+
+```bash
+symfony server:start
+```
