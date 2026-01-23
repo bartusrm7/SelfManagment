@@ -40,11 +40,11 @@ Main overview with charts, task list, and expense summary.
 ### Personal
 #### 5. Daily Tasks
 Manage personal tasks with full CRUD functionality.
-<img src="assets/images/Zrzut ekranu 2026-01-23 134805.png" width="100%" /> 
+<img src="assets/images/Zrzut ekranu 2026-01-23 134710.png" width="100%" /> 
 
 #### 6. Meetings
 View and manage your scheduled meetings, including upcoming and past events.
-<img src="assets/images/Zrzut ekranu 2026-01-23 134912.png" width="100%" /> 
+<img src="assets/images/Zrzut ekranu 2026-01-23 134805.png" width="100%" /> 
 
 #### 7. Notes
 Store and review personal notes. Users can toggle visibility of their latest notes and reminders.
