@@ -35,28 +35,25 @@ Secure login interface.
 ### Dashboard
 #### 4. Dashboard main page
 Main overview with charts, task list, and expense summary.
-<img src="/self-managment/assets/images/Zrzut ekranu 2026-01-23 091724.png" width="100%" /> 
+<img src="assets/images/Zrzut ekranu 2026-01-23 134912.png" width="100%" /> 
 
 ### Personal
 #### 5. Daily Tasks
 Manage personal tasks with full CRUD functionality.
-<img src="/self-managment/assets/images/Zrzut ekranu 2026-01-23 091724.png" width="100%" /> 
-<img src="/self-managment/assets/images/Zrzut ekranu 2026-01-23 091724.png" width="100%" /> 
-<img src="/self-managment/assets/images/Zrzut ekranu 2026-01-23 091724.png" width="100%" /> 
+<img src="assets/images/Zrzut ekranu 2026-01-23 134805.png" width="100%" /> 
 
 #### 6. Meetings
 View and manage your scheduled meetings, including upcoming and past events.
-<img src="/work-tracker-frontend/src/assets/Zrzut ekranu 2025-04-16 092049.png" width="100%" />
-<img src="/work-tracker-frontend/src/assets/Zrzut ekranu 2025-04-16 092227.png" />
+<img src="assets/images/Zrzut ekranu 2026-01-23 134912.png" width="100%" /> 
 
 #### 7. Notes
 Store and review personal notes. Users can toggle visibility of their latest notes and reminders.
-<img src="/self-managment/assets/images/Zrzut ekranu 2026-01-23 091724.png" width="100%" /> 
+<img src="assets/images/Zrzut ekranu 2026-01-23 134817.png" width="100%" /> 
 
 ### Finances
 #### 8. Expenses
 Track and manage your expenses with monthly summaries, detailed entries, and customizable budget settings.
-<img src="/self-managment/assets/images/Zrzut ekranu 2026-01-23 091724.png" width="100%" /> 
+<img src="assets/images/Zrzut ekranu 2026-01-23 134852.png" width="100%" /> 
 
 
 ## Technologies:
